@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maya Cruz — E-Commerce Virtual Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@400;500;700;800;900&family=Instrument+Serif:ital@0;1&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --lime:   #C8F135;
+  --pink:   #FF6B9D;
+  --sky:    #4ECDC4;
+  --orange: #FF8C42;
+  --purple: #7B61FF;
+  --ink:    #0F0F0F;
+  --ink-2:  #1C1C1C;
+  --white:  #FAFAFA;
+  --off:    #F2F0EB;
+  --muted:  #6B6860;
+  --border: #E0DDD6;
+  --ff:     'Cabinet Grotesk', sans-serif;
+  --ff-s:   'Instrument Serif', serif;
+  --ff-m:   'Space Mono', monospace;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--off);color:var(--ink);font-family:var(--ff);overflow-x:hidden}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.1rem 3rem;
+  background:rgba(242,240,235,0.9);
+  backdrop-filter:blur(16px);
+  border-bottom:1.5px solid var(--border);
+}
+.nav-logo{font-size:1.1rem;font-weight:900;color:var(--ink);text-decoration:none;letter-spacing:-0.03em}
+.nav-logo span{color:var(--pink)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{font-size:0.78rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color 0.2s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{
+  background:var(--ink)!important;color:var(--white)!important;
+  padding:0.5rem 1.25rem;border-radius:100px;
+  font-size:0.72rem!important;font-weight:700!important;
+  letter-spacing:0.08em!important;transition:background 0.2s!important;
+}
+.nav-cta:hover{background:var(--pink)!important;color:var(--ink)!important}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  padding:7rem 3rem 5rem 4rem;
+  display:grid;
+  grid-template-columns:1fr;
+  position:relative;
+  overflow:hidden;
+}
+
+/* big background word */
+.hero-bg-word{
+  position:absolute;
+  bottom:-0.15em;left:-0.02em;
+  font-size:clamp(12rem,22vw,22rem);
+  font-weight:900;
+  line-height:1;
+  letter-spacing:-0.05em;
+  color:transparent;
+  -webkit-text-stroke:1.5px var(--border);
+  pointer-events:none;
+  user-select:none;
+  z-index:0;
+}
+
+/* floating blobs */
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:0.25;pointer-events:none;z-index:0}
+.blob-1{width:400px;height:400px;background:var(--lime);top:-100px;right:-100px}
+.blob-2{width:300px;height:300px;background:var(--pink);bottom:10%;left:-80px}
+.blob-3{width:250px;height:250px;background:var(--sky);top:40%;right:10%}
+
+.hero-inner{position:relative;z-index:1;max-width:900px}
+
+.hero-chips{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.chip{
+  font-family:var(--ff-m);font-size:0.6rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  padding:0.35rem 0.9rem;border-radius:100px;
+  border:1.5px solid currentColor;
+}
+.chip-lime{color:var(--ink);background:var(--lime);border-color:var(--lime)}
+.chip-pink{color:var(--pink);border-color:var(--pink)}
+.chip-sky{color:var(--sky);border-color:var(--sky)}
+
+h1.hero-title{
+  font-size:clamp(3.5rem,7vw,7rem);
+  font-weight:900;
+  letter-spacing:-0.04em;
+  line-height:0.95;
+  color:var(--ink);
+  margin-bottom:1.5rem;
+}
+h1.hero-title .italic{
+  font-family:var(--ff-s);
+  font-style:italic;
+  font-weight:400;
+  color:var(--pink);
+}
+h1.hero-title .outline{
+  color:transparent;
+  -webkit-text-stroke:2.5px var(--ink);
+}
+h1.hero-title .highlight{
+  position:relative;
+  display:inline-block;
+}
+h1.hero-title .highlight::after{
+  content:'';
+  position:absolute;
+  bottom:0.05em;left:-2px;right:-2px;
+  height:0.3em;
+  background:var(--lime);
+  z-index:-1;
+  transform:skewX(-3deg);
+}
+
+.hero-bottom{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:3rem;
+  align-items:end;
+  margin-top:3rem;
+}
+.hero-desc{
+  font-size:1rem;
+  color:var(--muted);
+  line-height:1.7;
+  max-width:480px;
+  font-weight:500;
+}
+.hero-ctas{display:flex;gap:0.75rem;align-items:center;flex-wrap:wrap}
+.btn-fill{
+  background:var(--ink);color:var(--white);
+  padding:0.85rem 2rem;border-radius:100px;
+  font-family:var(--ff);font-size:0.78rem;font-weight:800;
+  letter-spacing:0.06em;text-transform:uppercase;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:all 0.2s;display:inline-block;
+}
+.btn-fill:hover{background:var(--pink);color:var(--ink);transform:translateY(-2px)}
+.btn-lime{
+  background:var(--lime);color:var(--ink);
+  padding:0.85rem 2rem;border-radius:100px;
+  font-family:var(--ff);font-size:0.78rem;font-weight:800;
+  letter-spacing:0.06em;text-transform:uppercase;
+  text-decoration:none;border:none;cursor:pointer;
+  transition:all 0.2s;display:inline-block;
+}
+.btn-lime:hover{background:#b5db20;transform:translateY(-2px)}
+
+.hero-stats-stack{display:flex;flex-direction:column;gap:1rem;min-width:160px}
+.stat-box{
+  background:var(--ink);color:var(--white);
+  padding:1.25rem 1.5rem;
+  border-radius:12px;
+  text-align:right;
+}
+.stat-box.lime{background:var(--lime);color:var(--ink)}
+.stat-big{
+  font-size:2.2rem;font-weight:900;
+  letter-spacing:-0.04em;line-height:1;
+  display:block;
+}
+.stat-lbl{
+  font-family:var(--ff-m);font-size:0.6rem;
+  letter-spacing:0.08em;text-transform:uppercase;
+  opacity:0.6;margin-top:0.2rem;display:block;
+}
+
+/* ── TICKER ── */
+.ticker{
+  background:var(--pink);
+  padding:0.75rem 0;overflow:hidden;
+  border-top:1.5px solid var(--ink);
+  border-bottom:1.5px solid var(--ink);
+}
+.ticker-track{
+  display:inline-flex;
+  animation:ticker 22s linear infinite;
+  white-space:nowrap;
+}
+.ticker-item{
+  font-family:var(--ff);font-size:0.75rem;font-weight:800;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--ink);padding:0 2rem;
+  display:flex;align-items:center;gap:0.5rem;
+}
+.ticker-dot{width:5px;height:5px;border-radius:50%;background:var(--ink);flex-shrink:0}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ── SERVICES ── */
+.services{padding:6rem 4rem;max-width:1200px;margin:0 auto}
+.sec-label{
+  font-family:var(--ff-m);font-size:0.62rem;font-weight:700;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:0.75rem;
+  display:flex;align-items:center;gap:0.75rem;
+}
+.sec-label::before{content:'';width:20px;height:2px;background:currentColor}
+h2.sec-title{
+  font-size:clamp(2rem,4vw,3.5rem);
+  font-weight:900;letter-spacing:-0.04em;
+  line-height:1;color:var(--ink);
+  margin-bottom:3.5rem;
+}
+h2.sec-title em{font-family:var(--ff-s);font-style:italic;font-weight:400}
+
+.services-bento{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  grid-template-rows:auto;
+  gap:12px;
+}
+.bento{
+  border-radius:16px;
+  padding:2rem;
+  position:relative;
+  overflow:hidden;
+  transition:transform 0.2s;
+}
+.bento:hover{transform:translateY(-4px)}
+.bento-lime{background:var(--lime);color:var(--ink)}
+.bento-ink{background:var(--ink);color:var(--white)}
+.bento-pink{background:var(--pink);color:var(--ink)}
+.bento-sky{background:var(--sky);color:var(--ink)}
+.bento-white{background:var(--white);color:var(--ink);border:1.5px solid var(--border)}
+.bento-purple{background:var(--purple);color:var(--white)}
+.bento.wide{grid-column:span 2}
+
+.bento-num{
+  font-family:var(--ff-m);font-size:0.62rem;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;
+  opacity:0.5;margin-bottom:1.5rem;
+}
+.bento-icon{font-size:2.5rem;margin-bottom:1rem;display:block}
+.bento-name{
+  font-size:1.2rem;font-weight:800;
+  letter-spacing:-0.02em;line-height:1.2;
+  margin-bottom:0.75rem;
+}
+.bento-desc{font-size:0.82rem;line-height:1.6;opacity:0.75}
+.bento-tags{display:flex;flex-wrap:wrap;gap:0.4rem;margin-top:1.25rem}
+.bento-tag{
+  font-family:var(--ff-m);font-size:0.58rem;
+  letter-spacing:0.06em;text-transform:uppercase;
+  padding:3px 9px;border-radius:100px;
+  border:1.5px solid currentColor;opacity:0.6;
+}
+
+/* ── PLATFORMS ── */
+.platforms{
+  background:var(--ink);
+  padding:6rem 4rem;
+}
+.platforms-inner{max-width:1200px;margin:0 auto}
+.platforms .sec-label{color:#555}
+.platforms h2.sec-title{color:var(--white)}
+.platforms h2.sec-title em{color:var(--lime)}
+.platforms-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  gap:10px;
+  margin-top:3rem;
+}
+.platform-pill{
+  background:#1c1c1c;
+  border:1px solid #2a2a2a;
+  border-radius:10px;
+  padding:1.1rem 1rem;
+  text-align:center;
+  transition:all 0.2s;
+  cursor:default;
+}
+.platform-pill:hover{
+  border-color:var(--lime);
+  background:#222;
+}
+.platform-icon{font-size:1.5rem;display:block;margin-bottom:0.4rem}
+.platform-name{
+  font-family:var(--ff-m);font-size:0.62rem;
+  font-weight:700;letter-spacing:0.08em;
+  text-transform:uppercase;color:#666;
+}
+.platform-pill:hover .platform-name{color:var(--lime)}
+
+/* ── RESULTS ── */
+.results{padding:6rem 4rem;max-width:1200px;margin:0 auto}
+.results-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+  margin-top:3.5rem;
+}
+.result-card{
+  border-radius:16px;
+  padding:2.5rem;
+  position:relative;
+  overflow:hidden;
+}
+.result-card-a{background:var(--off);border:1.5px solid var(--border)}
+.result-card-b{background:var(--lime)}
+.result-card-c{background:var(--purple)}
+.result-card-d{background:var(--ink)}
+
+.result-metric{
+  font-size:clamp(3rem,5vw,4.5rem);
+  font-weight:900;
+  letter-spacing:-0.04em;
+  line-height:1;
+  display:block;
+  margin-bottom:0.5rem;
+}
+.result-card-a .result-metric{color:var(--ink)}
+.result-card-b .result-metric{color:var(--ink)}
+.result-card-c .result-metric{color:var(--white)}
+.result-card-d .result-metric{color:var(--lime)}
+.result-label{
+  font-family:var(--ff-m);font-size:0.62rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  margin-bottom:0.75rem;
+}
+.result-card-a .result-label{color:var(--muted)}
+.result-card-b .result-label{color:var(--ink);opacity:0.6}
+.result-card-c .result-label{color:rgba(255,255,255,0.6)}
+.result-card-d .result-label{color:#666}
+.result-desc{font-size:0.82rem;line-height:1.6}
+.result-card-a .result-desc{color:var(--muted)}
+.result-card-b .result-desc{color:var(--ink);opacity:0.75}
+.result-card-c .result-desc{color:rgba(255,255,255,0.7)}
+.result-card-d .result-desc{color:#666}
+
+/* ── TESTIMONIALS ── */
+.testimonials{
+  background:var(--white);
+  padding:6rem 4rem;
+  border-top:1.5px solid var(--border);
+  border-bottom:1.5px solid var(--border);
+}
+.testimonials-inner{max-width:1200px;margin:0 auto}
+.testi-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+  margin-top:3.5rem;
+}
+.testi-card{
+  border-radius:14px;
+  padding:2rem;
+  border:1.5px solid var(--border);
+  background:var(--off);
+  position:relative;
+  transition:border-color 0.2s;
+}
+.testi-card:hover{border-color:var(--pink)}
+.testi-stars{
+  font-size:0.75rem;letter-spacing:3px;
+  color:var(--orange);margin-bottom:1rem;
+}
+.testi-text{
+  font-family:var(--ff-s);
+  font-style:italic;font-size:1rem;
+  color:var(--ink-2);line-height:1.7;
+  margin-bottom:1.5rem;font-weight:400;
+}
+.testi-author{font-size:0.85rem;font-weight:800;color:var(--ink)}
+.testi-role{
+  font-family:var(--ff-m);font-size:0.6rem;
+  letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--muted);margin-top:0.2rem;
+}
+.testi-badge{
+  position:absolute;top:1.5rem;right:1.5rem;
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.9rem;
+}
+.badge-pink{background:var(--pink)}
+.badge-lime{background:var(--lime)}
+.badge-sky{background:var(--sky)}
+
+/* ── PROCESS ── */
+.process{
+  padding:6rem 4rem;
+  background:var(--off);
+  position:relative;
+  overflow:hidden;
+}
+.process::before{
+  content:'HOW';
+  position:absolute;
+  right:-0.05em;top:50%;
+  transform:translateY(-50%);
+  font-size:20rem;font-weight:900;
+  letter-spacing:-0.05em;
+  color:transparent;
+  -webkit-text-stroke:1px var(--border);
+  line-height:1;
+  pointer-events:none;
+}
+.process-inner{max-width:1200px;margin:0 auto;position:relative;z-index:1}
+.process-steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1.5rem;
+  margin-top:3.5rem;
+}
+.proc-step{
+  background:var(--white);
+  border-radius:14px;
+  padding:1.75rem;
+  border:1.5px solid var(--border);
+  position:relative;
+  overflow:hidden;
+}
+.proc-step::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:4px;
+}
+.proc-step:nth-child(1)::before{background:var(--lime)}
+.proc-step:nth-child(2)::before{background:var(--pink)}
+.proc-step:nth-child(3)::before{background:var(--sky)}
+.proc-step:nth-child(4)::before{background:var(--purple)}
+.proc-num{
+  font-size:3rem;font-weight:900;
+  letter-spacing:-0.05em;
+  color:var(--border);
+  line-height:1;margin-bottom:1rem;
+}
+.proc-title{font-size:1rem;font-weight:800;color:var(--ink);margin-bottom:0.5rem}
+.proc-desc{font-size:0.78rem;color:var(--muted);line-height:1.6}
+
+/* ── HIRE ── */
+.hire{
+  padding:8rem 4rem;
+  background:var(--ink);
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.hire::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(200,241,53,0.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 50%, rgba(255,107,157,0.1) 0%, transparent 50%);
+}
+.hire-inner{position:relative;z-index:1}
+.hire-eyebrow{
+  font-family:var(--ff-m);font-size:0.65rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:1rem;
+  display:flex;align-items:center;justify-content:center;gap:0.75rem;
+}
+.hire-eyebrow::before,.hire-eyebrow::after{content:'';width:24px;height:1.5px;background:var(--lime)}
+.hire-avail{
+  display:inline-flex;align-items:center;gap:0.5rem;
+  border:1px solid #2a2a2a;padding:0.5rem 1.25rem;
+  border-radius:100px;margin-bottom:2rem;
+  font-family:var(--ff-m);font-size:0.6rem;
+  letter-spacing:0.1em;text-transform:uppercase;color:#666;
+}
+.avail-dot{
+  width:6px;height:6px;border-radius:50%;
+  background:#4ade80;box-shadow:0 0 8px #4ade80;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
+h2.hire-title{
+  font-size:clamp(3rem,6vw,5.5rem);
+  font-weight:900;letter-spacing:-0.04em;
+  line-height:0.95;color:var(--white);
+  max-width:800px;margin:0 auto 1.5rem;
+}
+h2.hire-title em{
+  font-family:var(--ff-s);
+  font-style:italic;font-weight:400;
+  color:var(--lime);
+}
+.hire-desc{
+  font-size:0.9rem;color:#666;
+  max-width:440px;margin:0 auto 3rem;line-height:1.8;
+}
+.hire-ctas{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-lime-big{
+  background:var(--lime);color:var(--ink);
+  padding:1rem 2.5rem;border-radius:100px;
+  font-family:var(--ff);font-size:0.78rem;font-weight:800;
+  letter-spacing:0.08em;text-transform:uppercase;
+  text-decoration:none;transition:all 0.2s;display:inline-block;
+}
+.btn-lime-big:hover{background:#b5db20;transform:translateY(-2px)}
+.btn-ghost-hire{
+  border:1.5px solid #2a2a2a;color:#888;
+  padding:1rem 2.5rem;border-radius:100px;
+  font-family:var(--ff);font-size:0.78rem;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;
+  text-decoration:none;transition:all 0.2s;display:inline-block;
+}
+.btn-ghost-hire:hover{border-color:#888;color:var(--white)}
+
+.hire-rates{
+  display:flex;gap:1.5rem;justify-content:center;
+  margin-top:3.5rem;flex-wrap:wrap;
+}
+.rate-card{
+  background:#161616;border:1px solid #252525;
+  border-radius:12px;padding:1.5rem 2rem;
+  text-align:left;min-width:160px;
+}
+.rate-type{
+  font-family:var(--ff-m);font-size:0.6rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:#555;margin-bottom:0.5rem;
+}
+.rate-price{
+  font-size:1.6rem;font-weight:900;
+  letter-spacing:-0.03em;color:var(--white);
+  line-height:1;margin-bottom:0.25rem;
+}
+.rate-note{font-size:0.72rem;color:#444}
+.rate-card.featured{border-color:var(--lime);background:#131510}
+.rate-card.featured .rate-price{color:var(--lime)}
+
+/* ── FOOTER ── */
+footer{
+  background:#080808;padding:1.75rem 4rem;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.foot-logo{
+  font-size:1rem;font-weight:900;
+  letter-spacing:-0.03em;color:#333;
+  text-decoration:none;
+}
+.foot-logo span{color:var(--pink)}
+.foot-copy{
+  font-family:var(--ff-m);font-size:0.6rem;
+  letter-spacing:0.1em;text-transform:uppercase;color:#333;
+}
+.foot-links{display:flex;gap:1.5rem;list-style:none}
+.foot-links a{
+  font-family:var(--ff-m);font-size:0.6rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:#444;text-decoration:none;transition:color 0.2s;
+}
+.foot-links a:hover{color:var(--lime)}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-chips{animation:fadeUp 0.5s ease both}
+h1.hero-title{animation:fadeUp 0.5s 0.1s ease both}
+.hero-desc{animation:fadeUp 0.5s 0.2s ease both}
+.hero-ctas{animation:fadeUp 0.5s 0.3s ease both}
+.hero-stats-stack{animation:fadeUp 0.5s 0.35s ease both}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .hero{padding:6rem 1.5rem 3rem}
+  .hero-bottom{grid-template-columns:1fr}
+  .hero-stats-stack{flex-direction:row}
+  .services,.results,.testimonials,.process,.platforms,.hire{padding:4rem 1.5rem}
+  .services-bento{grid-template-columns:1fr}
+  .bento.wide{grid-column:span 1}
+  .results-grid{grid-template-columns:1fr}
+  .testi-grid{grid-template-columns:1fr}
+  .process-steps{grid-template-columns:1fr 1fr}
+  footer{padding:1.5rem;flex-direction:column;gap:0.75rem;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Maya<span>.</span>Cruz</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#hire" class="nav-cta">Hire me</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+  <div class="hero-bg-word">ECOM</div>
+
+  <div class="hero-inner">
+    <div class="hero-chips">
+      <span class="chip chip-lime">Available Now</span>
+      <span class="chip chip-pink">E-Commerce VA</span>
+      <span class="chip chip-sky">5 Years Experience</span>
+    </div>
+
+    <h1 class="hero-title">
+      Your store.<br>
+      <span class="italic">Running</span>
+      <span class="outline"> smoother.</span><br>
+      <span class="highlight">Scaling faster.</span>
+    </h1>
+
+    <div class="hero-bottom">
+      <div>
+        <p class="hero-desc">
+          I'm an e-commerce virtual assistant who handles the operations, listings, customer service, and ads management that eat up your time — so you can focus on growing your brand.
+        </p>
+        <div class="hero-ctas" style="margin-top:2rem">
+          <a href="#hire" class="btn-fill">Let's work together</a>
+          <a href="#services" class="btn-lime">See what I do</a>
+        </div>
+      </div>
+      <div class="hero-stats-stack">
+        <div class="stat-box lime">
+          <span class="stat-big">200+</span>
+          <span class="stat-lbl">Stores managed</span>
+        </div>
+        <div class="stat-box">
+          <span class="stat-big">$2M+</span>
+          <span class="stat-lbl">Revenue supported</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="ticker-dot"></span>Shopee Management</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Lazada Ads</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Amazon FBA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Product Listing</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Customer Service</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Order Fulfillment</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Inventory Management</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>TikTok Shop</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Facebook Ads</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Shopee Management</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Lazada Ads</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Amazon FBA</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Product Listing</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Customer Service</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Order Fulfillment</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Inventory Management</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>TikTok Shop</span>
+    <span class="ticker-item"><span class="ticker-dot"></span>Facebook Ads</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="sec-label">What I do</div>
+  <h2 class="sec-title">Every corner of your<br>store — <em>handled.</em></h2>
+  <div class="services-bento">
+    <div class="bento bento-lime wide">
+      <div class="bento-num">01</div>
+      <span class="bento-icon">🛒</span>
+      <div class="bento-name">Product Listing & Optimization</div>
+      <div class="bento-desc">SEO-optimized titles, bullet points, descriptions, and images for Shopee, Lazada, Amazon, and Etsy. Higher search rank, more clicks, more conversions.</div>
+      <div class="bento-tags">
+        <span class="bento-tag">Shopee</span>
+        <span class="bento-tag">Lazada</span>
+        <span class="bento-tag">Amazon</span>
+        <span class="bento-tag">Etsy</span>
+        <span class="bento-tag">eBay</span>
+      </div>
+    </div>
+    <div class="bento bento-ink">
+      <div class="bento-num">02</div>
+      <span class="bento-icon">💬</span>
+      <div class="bento-name">Customer Service</div>
+      <div class="bento-desc">Fast, professional responses to inquiries, complaints, and reviews. I maintain your store's ratings and protect your seller reputation.</div>
+    </div>
+    <div class="bento bento-pink">
+      <div class="bento-num">03</div>
+      <span class="bento-icon">📦</span>
+      <div class="bento-name">Order & Inventory Management</div>
+      <div class="bento-desc">Monitor stock levels, process orders, coordinate with suppliers, and prevent out-of-stock situations before they hurt your sales.</div>
+    </div>
+    <div class="bento bento-sky">
+      <div class="bento-num">04</div>
+      <span class="bento-icon">📣</span>
+      <div class="bento-name">Ads & Campaign Management</div>
+      <div class="bento-desc">Set up and optimize Shopee Ads, Lazada Sponsored Products, and Facebook/TikTok campaigns targeting your ideal buyers.</div>
+    </div>
+    <div class="bento bento-purple wide">
+      <div class="bento-num">05</div>
+      <span class="bento-icon">📊</span>
+      <div class="bento-name">Store Analytics & Reporting</div>
+      <div class="bento-desc">Weekly performance reports covering revenue, conversion rates, traffic sources, top products, and actionable recommendations. Know exactly what's working and what isn't.</div>
+      <div class="bento-tags">
+        <span class="bento-tag">Weekly reports</span>
+        <span class="bento-tag">Revenue tracking</span>
+        <span class="bento-tag">Competitor analysis</span>
+      </div>
+    </div>
+    <div class="bento bento-white">
+      <div class="bento-num">06</div>
+      <span class="bento-icon">🎨</span>
+      <div class="bento-name">Visual Content & Canva</div>
+      <div class="bento-desc">Product banners, promo graphics, and lifestyle images that make your listings stand out in a crowded marketplace.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PLATFORMS -->
+<section class="platforms" id="platforms">
+  <div class="platforms-inner">
+    <div class="sec-label" style="color:#555">Platforms & Tools</div>
+    <h2 class="sec-title" style="color:white">I work <em style="color:var(--lime)">fluently</em> on<br>every major platform.</h2>
+    <div class="platforms-grid">
+      <div class="platform-pill"><span class="platform-icon">🛍️</span><div class="platform-name">Shopee</div></div>
+      <div class="platform-pill"><span class="platform-icon">🏪</span><div class="platform-name">Lazada</div></div>
+      <div class="platform-pill"><span class="platform-icon">📦</span><div class="platform-name">Amazon</div></div>
+      <div class="platform-pill"><span class="platform-icon">🎨</span><div class="platform-name">Etsy</div></div>
+      <div class="platform-pill"><span class="platform-icon">🎵</span><div class="platform-name">TikTok Shop</div></div>
+      <div class="platform-pill"><span class="platform-icon">🛒</span><div class="platform-name">Shopify</div></div>
+      <div class="platform-pill"><span class="platform-icon">🟦</span><div class="platform-name">Facebook Shop</div></div>
+      <div class="platform-pill"><span class="platform-icon">📊</span><div class="platform-name">Google Sheets</div></div>
+      <div class="platform-pill"><span class="platform-icon">🎯</span><div class="platform-name">Meta Ads</div></div>
+      <div class="platform-pill"><span class="platform-icon">🖼️</span><div class="platform-name">Canva</div></div>
+      <div class="platform-pill"><span class="platform-icon">✉️</span><div class="platform-name">Klaviyo</div></div>
+      <div class="platform-pill"><span class="platform-icon">📋</span><div class="platform-name">Notion</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results" id="results">
+  <div class="sec-label">Results</div>
+  <h2 class="sec-title">Real numbers.<br><em>Real growth.</em></h2>
+  <div class="results-grid">
+    <div class="result-card result-card-a">
+      <div class="result-label">Average listing improvement</div>
+      <div class="result-metric">+47%</div>
+      <div class="result-desc">Average increase in click-through rate after product listing optimization across Shopee and Lazada stores.</div>
+    </div>
+    <div class="result-card result-card-b">
+      <div class="result-label">Response time maintained</div>
+      <div class="result-metric">&lt;1hr</div>
+      <div class="result-desc">Customer inquiries answered within 1 hour. Higher response rates mean better seller scores and more conversions.</div>
+    </div>
+    <div class="result-card result-card-c">
+      <div class="result-label">Stores managed simultaneously</div>
+      <div class="result-metric">8</div>
+      <div class="result-desc">Currently managing 8 active stores across 3 platforms. Each store gets dedicated daily attention and reporting.</div>
+    </div>
+    <div class="result-card result-card-d">
+      <div class="result-label">Ad spend managed monthly</div>
+      <div class="result-metric">$15k+</div>
+      <div class="result-desc">Monthly ad budget managed across Shopee Ads, Lazada Sponsored, and Facebook campaigns with consistent positive ROAS.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="testimonials-inner">
+    <div class="sec-label">Client feedback</div>
+    <h2 class="sec-title">What store owners <em>say.</em></h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-badge badge-lime">⭐</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">My Shopee store went from 50 orders a month to 300+ after Maya optimized all my listings and set up Shopee Ads. She's basically my store manager.</p>
+        <div class="testi-author">Kevin L.</div>
+        <div class="testi-role">Shopee Seller — Electronics, Philippines</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-badge badge-pink">🔥</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">Hired Maya to manage customer service for our Lazada store. Our seller rating went from 4.2 to 4.9 in 6 weeks. She's fast, professional, and genuinely cares.</p>
+        <div class="testi-author">Christine R.</div>
+        <div class="testi-role">Lazada Seller — Fashion, Singapore</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-badge badge-sky">✨</div>
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-text">The weekly reports Maya sends are so detailed and clear. I finally understand what's driving my revenue and what needs fixing. Worth every dollar.</p>
+        <div class="testi-author">Daniel W.</div>
+        <div class="testi-role">Amazon FBA Seller — USA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-inner">
+    <div class="sec-label">How it works</div>
+    <h2 class="sec-title">Up and running in<br><em>72 hours.</em></h2>
+    <div class="process-steps">
+      <div class="proc-step">
+        <div class="proc-num">01</div>
+        <div class="proc-title">Intro Call</div>
+        <div class="proc-desc">We review your store, pain points, goals, and current performance. I audit your listings and identify quick wins.</div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">02</div>
+        <div class="proc-title">Onboarding</div>
+        <div class="proc-desc">You give me access to your store accounts and tools. I set up SOPs, workflows, and reporting dashboards.</div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">03</div>
+        <div class="proc-title">Execution</div>
+        <div class="proc-desc">Daily tasks begin — listings, customer replies, order monitoring, and ad optimization running on schedule.</div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-num">04</div>
+        <div class="proc-title">Weekly Review</div>
+        <div class="proc-desc">Every week you receive a performance report with numbers, insights, and the plan for the next 7 days.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIRE -->
+<section class="hire" id="hire">
+  <div class="hire-inner">
+    <div class="hire-eyebrow">Let's work together</div>
+    <div class="hire-avail">
+      <div class="avail-dot"></div>
+      Taking new clients this month
+    </div>
+    <h2 class="hire-title">
+      Ready to hand off<br>your store and <em>finally</em><br>focus on growth?
+    </h2>
+    <p class="hire-desc">Book a free 30-minute store audit. I'll tell you exactly what's holding your sales back — no strings attached.</p>
+    <div class="hire-ctas">
+      <a href="mailto:your@email.com" class="btn-lime-big">Book free store audit</a>
+      <a href="https://www.upwork.com" class="btn-ghost-hire">View Upwork profile</a>
+    </div>
+    <div class="hire-rates">
+      <div class="rate-card">
+        <div class="rate-type">Starter</div>
+        <div class="rate-price">$5<span style="font-size:1rem;font-weight:400;color:#555">/hr</span></div>
+        <div class="rate-note">Basic listings & CS</div>
+      </div>
+      <div class="rate-card featured">
+        <div class="rate-type">Full Management</div>
+        <div class="rate-price">$8<span style="font-size:1rem;font-weight:400;color:#555">/hr</span></div>
+        <div class="rate-note">Most popular package</div>
+      </div>
+      <div class="rate-card">
+        <div class="rate-type">Monthly Retainer</div>
+        <div class="rate-price">$350<span style="font-size:1rem;font-weight:400;color:#555">/mo</span></div>
+        <div class="rate-note">Full store management</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="foot-logo">Maya<span>.</span>Cruz</a>
+  <span class="foot-copy">© 2025 · E-Commerce VA · Philippines</span>
+  <ul class="foot-links">
+    <li><a href="#">Email</a></li>
+    <li><a href="#">Upwork</a></li>
+    <li><a href="#">LinkedIn</a></li>
+  </ul>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.08 });
+
+document.querySelectorAll('.bento, .result-card, .testi-card, .proc-step, .platform-pill').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = `opacity 0.5s ${i * 0.06}s ease, transform 0.5s ${i * 0.06}s ease`;
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
